@@ -1,6 +1,8 @@
 import Logo from "@/app/_components/Logo";
 import Navigation from "@/app/_components/Navigation";
 
+import { Josefin_Sans } from "next/font/google";
+
 import "@/app/_styles/globals.css";
 
 export const metadata = {
@@ -13,10 +15,14 @@ export const metadata = {
     " Luxirious Cabin Hotel located in the heart of Italian Dolomites, surrounded by beautiful mountains and dark forests",
 };
 
+const josefin = Josefin_Sans({ subsets: ["latin"], display: "swap" });
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-primary-950 text-primary-50 min-h-screen ">
+      <body
+        className={` ${josefin.className} bg-primary-950 text-primary-50 min-h-screen `}
+      >
         <header>
           <Logo />
           <Navigation />
