@@ -1,11 +1,18 @@
 import Image from "next/image";
 import img1 from "@/public/about-1.jpg";
+import { getCabins } from "../_lib/data-service";
 
 export const metadata = {
   title: "About",
 };
 
-export default function Page() {
+export const revalidate = 3600 * 24;
+
+export default async function Page() {
+  const cabinsLength = (await getCabins())?.length;
+
+  if (!!!cabinsLength) return null;
+
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
       <div className="col-span-3">
