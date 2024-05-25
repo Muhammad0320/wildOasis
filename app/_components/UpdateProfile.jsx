@@ -1,4 +1,6 @@
-const { useState } = require("react");
+"use client";
+
+import { useState } from "react";
 
 function UpdateProfile({ children }) {
   const [count, setCount] = useState();
