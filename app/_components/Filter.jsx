@@ -42,15 +42,15 @@ function Filter() {
         4 &mdash; 7 guests{" "}
       </button> */}
 
-      <Button filter="large" activeFilter={activeFilter} onClick={onClick}>
+      <Button filter="all" activeFilter={activeFilter} onClick={onClick}>
         {" "}
         All cabins{" "}
       </Button>
-      <Button filter="large" activeFilter={activeFilter} onClick={onClick}>
+      <Button filter="small" activeFilter={activeFilter} onClick={onClick}>
         {" "}
         2 &mdash; 3 guests{" "}
       </Button>
-      <Button filter="large" activeFilter={activeFilter} onClick={onClick}>
+      <Button filter="medium" activeFilter={activeFilter} onClick={onClick}>
         {" "}
         4 &mdash; 7{" "}
       </Button>
