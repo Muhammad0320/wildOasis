@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import CabinCards from "@/app/_components/CabinCards";
 import Spinner from "@/app/_components/Spinner";
+import Filter from "../_components/Filter";
 
 export default function Page({ searchParams }) {
   // CHANGE
@@ -20,6 +21,10 @@ export default function Page({ searchParams }) {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
 
       <Suspense fallback={<Spinner />}>
         <CabinCards filter={filter} />
