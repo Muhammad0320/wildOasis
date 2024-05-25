@@ -56,3 +56,5 @@ function UpdateProfile({ children }) {
     </form>
   );
 }
+
+export default UpdateProfile;
