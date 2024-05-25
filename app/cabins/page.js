@@ -1,11 +1,11 @@
-import CabinCard from "@/app/_components/CabinCard";
-import { getCabins } from "../_lib/data-service";
 import { Suspense } from "react";
 import CabinCards from "@/app/_components/CabinCards";
 import Spinner from "@/app/_components/Spinner";
 
-export default function Page() {
+export default function Page({ searchParams }) {
   // CHANGE
+
+  const filter = searchParams?.capacity ?? "all";
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function Page() {
       </p>
 
       <Suspense fallback={<Spinner />}>
-        <CabinCards />
+        <CabinCards filter={filter} />
       </Suspense>
     </div>
   );
