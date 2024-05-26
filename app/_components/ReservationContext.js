@@ -8,7 +8,10 @@ const ReservationContextProvider = ({ children }) => {
   const { range, setRange } = useState(initialState);
 
   return (
-    <ReservationContext.Provider> {children} </ReservationContext.Provider>
+    <ReservationContext.Provider value={{ range, setRange }}>
+      {" "}
+      {children}{" "}
+    </ReservationContext.Provider>
   );
 };
 
