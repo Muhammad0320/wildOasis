@@ -1,9 +1,6 @@
 import Cabin from "@/app/_components/Cabin";
 import Reservations from "@/app/_components/Reservations";
-import TextExpander from "@/app/_components/TextExpander";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
-import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 
 export async function generateMetadata({ params }) {
   const cabin = await getCabin(params.cabinId);
