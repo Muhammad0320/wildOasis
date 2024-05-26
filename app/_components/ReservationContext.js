@@ -24,6 +24,8 @@ const useReservation = () => {
 
   if (!context) throw new Error("Context is used outside of it's provider");
 
+  console.log(context);
+
   return context;
 };
 
