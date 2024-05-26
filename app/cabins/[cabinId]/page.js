@@ -1,5 +1,4 @@
-import DateSelector from "@/app/_components/DateSelector";
-import ReservationForm from "@/app/_components/ReservationForm";
+import Reservations from "@/app/_components/Reservations";
 import TextExpander from "@/app/_components/TextExpander";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
@@ -81,11 +80,7 @@ export default async function Page({ params }) {
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 min-h-[400px] border border-primary-800">
-        <DateSelector />
-
-        <ReservationForm />
-      </div>
+      <Reservations cabin={cabin} />
     </div>
   );
 }
