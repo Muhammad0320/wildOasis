@@ -29,8 +29,6 @@ function DateSelector({ settings, bookedDates, cabin }) {
 
   const { range, setRange, resetRange } = useReservation();
 
-  console.log(range);
-
   return (
     <div className="flex flex-col justify-between">
       <DayPicker

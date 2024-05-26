@@ -11,7 +11,7 @@ export const metadata = {
   },
 
   description:
-    " Luxirious Cabin Hotel located in the heart of Italian Dolomites, surrounded by beautiful mountains and dark forests",
+    "Luxirious Cabin Hotel located in the heart of Italian Dolomites, surrounded by beautiful mountains and dark forests",
 };
 
 const josefin = Josefin_Sans({ subsets: ["latin"], display: "swap" });
