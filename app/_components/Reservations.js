@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";
 import ReservationForm from "./ReservationForm";
+import Spinner from "./Spinner";
 
 const Reservations = async ({ cabin }) => {
   const [settings, bookedDates] = await Promise.all([
@@ -15,7 +17,9 @@ const Reservations = async ({ cabin }) => {
         bookedDated={bookedDates}
         cabin={cabin}
       />
-      <ReservationForm cabin={cabin} />
+      <Suspense fallback={<Spinner />}>
+        <ReservationForm cabin={cabin} />
+      </Suspense>
     </div>
   );
 };
