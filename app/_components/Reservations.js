@@ -20,7 +20,7 @@ const Reservations = async ({ cabin }) => {
         cabin={cabin}
       />
 
-      {session.user ? (
+      {session?.user ? (
         <ReservationForm cabin={cabin} user={session.user} />
       ) : (
         <LoginMessage />
