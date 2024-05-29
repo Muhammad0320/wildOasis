@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
+import { redirect } from "next/navigation";
 
 export const signinAction = async () => {
   await signIn("google", { redirectTo: "/account" });
@@ -75,14 +76,17 @@ export const editReservation = async (formData) => {
   if (!bookingIds.includes(bookingId))
     throw new Error(" You are not allowed to perform this action ");
 
+  if (error) throw new Error("Guest could not be updated");
+
+  const guests = formData.get("numGuests");
+
   const { error } = await supabase
     .from("guests")
-    .update(updatedFields)
+    .update({ numGuests: guests })
     .eq("id", bookingIds)
     .select()
     .single();
 
-  if (error) throw new Error("Guest could not be updated");
-
-  const guests = formData.get("numGuests");
+  revalidatePath("/account/reservations");
+  redirect("/account/reservations");
 };
