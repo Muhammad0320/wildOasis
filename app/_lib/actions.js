@@ -80,9 +80,11 @@ export const editReservation = async (formData) => {
 
   const guests = formData.get("numGuests");
 
+  const observations = formData.get("observations");
+
   const { error } = await supabase
     .from("guests")
-    .update({ numGuests: guests })
+    .update({ numGuests: guests, observations })
     .eq("id", bookingIds)
     .select()
     .single();
