@@ -1,8 +1,8 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
-import DeleteReservation from "@/app/_components/DeleteReservation";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import DeleteReservation from "@/app/_components/DeleteReservation";
+import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 
 export const formatDistanceFromNow = (dateStr) =>
   formatDistance(parseISO(dateStr), new Date(), {
