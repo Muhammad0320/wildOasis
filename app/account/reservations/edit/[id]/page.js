@@ -1,3 +1,4 @@
+import { editReservation } from "@/app/_lib/actions";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
@@ -15,7 +16,10 @@ export default async function Page({ params }) {
         Edit Reservation #{id}
       </h2>
 
-      <cform className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <form
+        action={editReservation}
+        className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -47,12 +51,18 @@ export default async function Page({ params }) {
           />
         </div>
 
-        <div className="flex justify-end items-center gap-6">
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Update reservation
-          </button>
-        </div>
-      </cform>
+        <div className="flex justify-end items-center gap-6"></div>
+      </form>
     </div>
   );
 }
+
+const Button = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
+      {pending ? "Updating..." : "Update reservation"}
+    </button>
+  );
+};
