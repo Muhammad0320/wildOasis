@@ -67,7 +67,7 @@ export const editReservation = async (formData) => {
 
   if (!session.user) throw new Error(" You must be logged in ");
 
-  const bookingId = formData.get("id");
+  const bookingId = +formData.get("id");
 
   const bookingIds = (await getBookings(session.user.guestId)).map(
     (booking) => booking.id
@@ -78,9 +78,9 @@ export const editReservation = async (formData) => {
 
   if (error) throw new Error("Guest could not be updated");
 
-  const guests = formData.get("numGuests");
+  const guests = +formData.get("numGuests");
 
-  const observations = formData.get("observations");
+  const observations = formData.get("observations").slice(0, 1000);
 
   const { error } = await supabase
     .from("guests")
@@ -89,6 +89,6 @@ export const editReservation = async (formData) => {
     .select()
     .single();
 
-  revalidatePath("/account/reservations");
+  revalidatePath("/account/reservations", "layout");
   redirect("/account/reservations");
 };
