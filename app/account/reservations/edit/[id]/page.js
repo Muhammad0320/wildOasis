@@ -1,15 +1,21 @@
-export default function Page() {
+import { getBooking, getCabin } from "@/app/_lib/data-service";
+
+export default async function Page({ params }) {
   // CHANGE
-  const reservationId = 23;
-  const maxCapacity = 23;
+  //   const reservationId = 23;
+  //   const maxCapacity = 23;
+
+  const { id, cabinId } = await getBooking(params.id);
+
+  const { maxCapacity } = await getCabin(cabinId);
 
   return (
     <div>
       <h2 className="font-semibold text-2xl text-accent-400 mb-7">
-        Edit Reservation #{reservationId}
+        Edit Reservation #{id}
       </h2>
 
-      <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <cform className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -29,6 +35,8 @@ export default function Page() {
           </select>
         </div>
 
+        <input type="hidden" value={id} name="id" />
+
         <div className="space-y-2">
           <label htmlFor="observations">
             Anything we should know about your stay?
@@ -44,7 +52,7 @@ export default function Page() {
             Update reservation
           </button>
         </div>
-      </form>
+      </cform>
     </div>
   );
 }

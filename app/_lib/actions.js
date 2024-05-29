@@ -60,3 +60,29 @@ export const deleteReservation = async (bookingId) => {
 
   revalidatePath("/account/reservations");
 };
+
+export const editReservation = async (formData) => {
+  const session = await auth();
+
+  if (!session.user) throw new Error(" You must be logged in ");
+
+  const bookingId = formData.get("id");
+
+  const bookingIds = (await getBookings(session.user.guestId)).map(
+    (booking) => booking.id
+  );
+
+  if (!bookingIds.includes(bookingId))
+    throw new Error(" You are not allowed to perform this action ");
+
+  const { error } = await supabase
+    .from("guests")
+    .update(updatedFields)
+    .eq("id", bookingIds)
+    .select()
+    .single();
+
+  if (error) throw new Error("Guest could not be updated");
+
+  const guests = formData.get("numGuests");
+};
