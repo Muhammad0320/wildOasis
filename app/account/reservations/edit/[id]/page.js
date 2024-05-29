@@ -1,4 +1,5 @@
 import { editReservation } from "@/app/_lib/actions";
+import { useFormStatus } from "react-dom";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
@@ -51,7 +52,9 @@ export default async function Page({ params }) {
           />
         </div>
 
-        <div className="flex justify-end items-center gap-6"></div>
+        <div className="flex justify-end items-center gap-6">
+          <Button />
+        </div>
       </form>
     </div>
   );
