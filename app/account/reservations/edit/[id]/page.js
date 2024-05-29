@@ -9,7 +9,7 @@ export default async function Page({ params }) {
 
   const { id } = params;
 
-  const { cabinId } = await getBooking(id);
+  const { cabinId, numGuest, observations } = await getBooking(id);
 
   const { maxCapacity } = await getCabin(cabinId);
 
@@ -27,6 +27,7 @@ export default async function Page({ params }) {
           <label htmlFor="numGuests">How many guests?</label>
           <select
             name="numGuests"
+            defaultValue={numGuest}
             id="numGuests"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
             required
@@ -50,6 +51,7 @@ export default async function Page({ params }) {
           </label>
           <textarea
             name="observations"
+            defaultValue={observations}
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
         </div>
