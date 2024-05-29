@@ -29,7 +29,7 @@ export const updateFunction = async (formData) => {
 
   const updateDate = { nationalID, nationality, countryFlag };
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("guests")
     .update(updateDate)
     .eq("id", session.user.guestId);
@@ -51,7 +51,10 @@ export const deleteReservation = async (bookingId) => {
   if (!bookingIds.includes(bookingId))
     throw new Error(" You are not allowed to perform this action ");
 
-  const { error } = await supabase.from("bookings").delete().eq("id", id);
+  const { error } = await supabase
+    .from("bookings")
+    .delete()
+    .eq("id", bookingId);
 
   if (error) throw new Error("Booking could not be deleted");
 
