@@ -56,6 +56,15 @@ export const createBooking = async (data, formData) => {
     hasBreakfast: false,
     status: "uncomfirmed",
   };
+
+  const { error } = await supabase
+    .from("bookings")
+    .insert([newBooking])
+    // So that the newly created object gets returned!
+    .select()
+    .single();
+
+  if (error) throw new Error("Booking could not be created");
 };
 
 export const deleteReservation = async (bookingId) => {
