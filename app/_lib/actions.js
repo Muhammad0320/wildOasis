@@ -40,6 +40,24 @@ export const updateFunction = async (formData) => {
   revalidatePath("/account/profile");
 };
 
+export const createBooking = async (data, formData) => {
+  const session = await auth();
+
+  if (!session.user) throw new Error(" You must be logged in ");
+
+  const newBooking = {
+    ...data,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: data.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "uncomfirmed",
+  };
+};
+
 export const deleteReservation = async (bookingId) => {
   const session = await auth();
 
@@ -90,5 +108,6 @@ export const editReservation = async (formData) => {
     .single();
 
   revalidatePath("/account/reservations", "layout");
+
   redirect("/account/reservations");
 };
